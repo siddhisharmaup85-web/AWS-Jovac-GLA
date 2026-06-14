@@ -1,93 +1,106 @@
-# Lecture1
-# AWS EC2 Linux Instance Setup and Access
+# AWS JOVAC 2026 – Lecture 1
+## AWS EC2 Windows and Linux Instance Creation & Remote Access
 
-## 📌 Project Title
-AWS EC2 Linux Instance Creation, Remote Access using SSH, and Instance Termination
-
----
-
-## 📖 Project Description
-
-This project demonstrates the complete process of creating, accessing, managing, and terminating a Linux-based Virtual Machine (EC2 Instance) on Amazon Web Services (AWS). The task introduces the fundamentals of cloud computing and Infrastructure as a Service (IaaS) by using AWS EC2.
-
-The Linux instance is accessed securely through SSH (Secure Shell) using a PEM key pair and Git Bash. This project helps users understand how cloud servers are deployed and managed in real-world environments.
+![AWS](https://img.shields.io/badge/AWS-EC2-orange)
+![Cloud Computing](https://img.shields.io/badge/Cloud-Computing-blue)
+![Windows Server](https://img.shields.io/badge/Windows-Server-green)
+![Linux](https://img.shields.io/badge/Linux-EC2-yellow)
 
 ---
 
-## 🎯 Objectives
+# 📖 Project Overview
 
-- Understand AWS EC2 services.
-- Launch a Linux Virtual Machine in AWS.
-- Configure Security Groups.
-- Connect to the Linux server using SSH.
-- Perform basic Linux operations.
-- Understand public IP and remote access.
-- Terminate cloud resources to avoid unnecessary charges.
+This project was completed as part of the **AWS JOVAC 2026 Training Program**. The objective was to understand the fundamentals of cloud computing, create AWS accounts, explore AWS Regions and Availability Zones, and gain hands-on experience with Amazon EC2 by creating and accessing both Windows and Linux virtual machines. :contentReference[oaicite:0]{index=0}
 
----
+The project covers:
 
-# What is AWS EC2?
-
-Amazon Elastic Compute Cloud (EC2) is a web service that provides scalable virtual servers in the cloud. EC2 allows users to create and manage virtual machines without purchasing physical hardware.
-
-### Key Features
-
-- On-demand virtual machines
-- Multiple operating systems support
-- Flexible scaling
-- Secure access
-- Pay-as-you-go pricing
-- High availability
+- Introduction to Cloud Computing
+- AWS Account Setup
+- AWS Regions and Availability Zones
+- Creating a Windows EC2 Instance
+- Accessing Windows EC2 using Remote Desktop Protocol (RDP)
+- Creating a Linux EC2 Instance
+- Accessing Linux EC2 using SSH
+- Security Group Configuration
+- Key Pair Authentication
+- Instance Management and Termination
 
 ---
 
-# Prerequisites
+# ☁️ Introduction to Cloud Computing
 
-Before starting, ensure the following requirements are met:
+Cloud Computing is the delivery of computing services such as servers, storage, networking, databases, and software over the internet. Instead of purchasing physical hardware, users can rent resources on demand.
 
-- AWS Account
-- Internet Connection
-- Git Bash Installed
-- Valid Email Address
-- AWS Key Pair (.pem file)
-- AWS Free Tier Eligible Account
+### Benefits of Cloud Computing
+
+- Scalability
+- Cost Efficiency
+- High Availability
+- Security
+- Global Accessibility
+- Faster Deployment
 
 ---
 
-# Architecture Overview
+# 🚀 Amazon Web Services (AWS)
+
+Amazon Web Services (AWS) is a cloud platform that provides over 200 cloud services, including:
+
+- EC2 (Elastic Compute Cloud)
+- S3 (Simple Storage Service)
+- VPC (Virtual Private Cloud)
+- RDS (Relational Database Service)
+- IAM (Identity and Access Management)
+
+---
+
+# 🌍 AWS Regions and Availability Zones
+
+AWS infrastructure is distributed globally.
+
+### Region
+A Region is a geographical location containing AWS data centers.
+
+Examples:
+
+- Mumbai (ap-south-1)
+- Singapore (ap-southeast-1)
+- Ohio (us-east-2)
+
+### Availability Zone (AZ)
+An Availability Zone is an isolated data center within a region.
+
+Benefits:
+
+- Fault Tolerance
+- High Availability
+- Disaster Recovery
+
+To view Availability Zones:
 
 ```text
-User Machine
-      │
-      │ SSH (Port 22)
-      ▼
-AWS Security Group
-      │
-      ▼
-Linux EC2 Instance
-      │
-      ▼
-Amazon Cloud Infrastructure
+AWS Console → VPC → Subnets
 ```
 
 ---
 
-# Step 1: Login to AWS Console
+# 🖥️ Task 1 – Create and Access a Windows EC2 Instance
 
-1. Open AWS Console.
-2. Enter credentials.
-3. Sign in successfully.
-4. Navigate to EC2 Dashboard.
+## Step 1: Select AWS Region
+
+Choose a suitable AWS Region according to requirements. :contentReference[oaicite:1]{index=1}
 
 ---
 
-# Step 2: Launch a Linux EC2 Instance
+## Step 2: Open EC2 Dashboard
 
-### Open EC2 Dashboard
+```text
+AWS Console → Services → EC2
+```
 
-Services → Compute → EC2
+---
 
-### Launch Instance
+## Step 3: Launch Instance
 
 Click:
 
@@ -95,17 +108,191 @@ Click:
 Launch Instance
 ```
 
-### Configure Instance
+Configure:
 
-#### Instance Name
+### Instance Name
+
+```text
+Windows-Server
+```
+
+### Operating System
+
+```text
+Microsoft Windows Server 2019 Base
+```
+
+### Instance Type
+
+```text
+t3.micro
+```
+
+Free Tier eligible. :contentReference[oaicite:2]{index=2}
+
+---
+
+## Step 4: Create Key Pair
+
+A Key Pair is used for secure authentication between AWS and the user machine. AWS stores the public key while the private key is downloaded locally. :contentReference[oaicite:3]{index=3}
+
+Example:
+
+```text
+windows-key.pem
+```
+
+---
+
+## Step 5: Configure Networking
+
+### Availability Zone
+
+```text
+1a
+```
+
+### Security Group Rules
+
+| Type | Port |
+|--------|--------|
+| RDP | 3389 |
+| HTTP | 80 |
+| HTTPS | 443 |
+
+Security Groups act as virtual firewalls that control inbound and outbound traffic. :contentReference[oaicite:4]{index=4}
+
+---
+
+## Step 6: Configure Storage
+
+```text
+30 GB SSD
+```
+
+:contentReference[oaicite:5]{index=5}
+
+---
+
+## Step 7: Launch Instance
+
+Click:
+
+```text
+Launch Instance
+```
+
+Instance state becomes:
+
+```text
+Running
+```
+
+:contentReference[oaicite:6]{index=6}
+
+---
+
+## Step 8: Obtain Public IP
+
+The instance can be accessed using:
+
+- Public IPv4 Address
+- Public DNS
+
+:contentReference[oaicite:7]{index=7}
+
+---
+
+# 🔐 Access Windows EC2 Instance
+
+## Step 1: Open Instance
+
+Select the running instance.
+
+Click:
+
+```text
+Connect
+```
+
+:contentReference[oaicite:8]{index=8}
+
+---
+
+## Step 2: Retrieve Administrator Password
+
+Navigate to:
+
+```text
+RDP Client → Get Password
+```
+
+Upload the downloaded PEM file.
+
+Click:
+
+```text
+Decrypt Password
+```
+
+The Windows administrator password becomes visible. :contentReference[oaicite:9]{index=9}
+
+---
+
+## Step 3: Open Remote Desktop
+
+Press:
+
+```text
+Win + R
+```
+
+Type:
+
+```text
+mstsc
+```
+
+This launches Microsoft Remote Desktop Connection. :contentReference[oaicite:10]{index=10}
+
+---
+
+## Step 4: Connect
+
+Enter:
+
+```text
+Public IP Address
+```
+
+Then enter:
+
+```text
+Username
+Password
+```
+
+The Windows Server is successfully accessed. :contentReference[oaicite:11]{index=11}
+
+---
+
+# 🐧 Task 2 – Create and Access a Linux EC2 Instance
+
+The Linux instance follows the same creation procedure as the Windows instance. :contentReference[oaicite:12]{index=12}
+
+---
+
+## Step 1: Launch Linux Instance
+
+Configure:
+
+### Instance Name
 
 ```text
 Linux-Server
 ```
 
-#### Select AMI
-
-Choose:
+### Operating System
 
 ```text
 Amazon Linux 2023
@@ -117,53 +304,27 @@ or
 Ubuntu Server
 ```
 
-#### Instance Type
+### Instance Type
 
 ```text
 t2.micro
 ```
 
-Free Tier Eligible.
+---
 
-#### Create Key Pair
+## Step 2: Configure Security Group
 
-Click:
+Add SSH access.
 
-```text
-Create New Key Pair
-```
+| Type | Protocol | Port |
+|--------|----------|--------|
+| SSH | TCP | 22 |
 
-Example:
-
-```text
-linux-key
-```
-
-Download:
-
-```text
-linux-key.pem
-```
-
-Save the PEM file securely.
+SSH is required for Linux instances because RDP is used only for Windows machines. :contentReference[oaicite:13]{index=13}
 
 ---
 
-# Step 3: Configure Security Group
-
-A Security Group acts as a virtual firewall.
-
-### Add Inbound Rule
-
-| Type | Protocol | Port | Source |
-|--------|----------|--------|---------|
-| SSH | TCP | 22 | My IP |
-
-SSH access is required for Linux instances.
-
----
-
-# Step 4: Launch Instance
+## Step 3: Launch Instance
 
 Click:
 
@@ -171,61 +332,38 @@ Click:
 Launch Instance
 ```
 
-AWS will create the Linux machine.
-
-Instance State:
-
-```text
-Running
-```
+The Linux machine is created successfully. :contentReference[oaicite:14]{index=14}
 
 ---
 
-# Step 5: Obtain Public IP Address
+# 🔐 Access Linux EC2 Instance
 
-Select the instance.
+## Required Software
 
-Copy:
+Install either:
 
-```text
-Public IPv4 Address
-```
+- Git Bash
+- PuTTY
+
+Git Bash was used in this project. :contentReference[oaicite:15]{index=15}
+
+---
+
+## Step 1: Locate PEM File
 
 Example:
 
 ```text
-65.2.xxx.xxx
+linux-key.pem
 ```
 
-This IP will be used for SSH connection.
+:contentReference[oaicite:16]{index=16}
 
 ---
 
-# Step 6: Install Git Bash
+## Step 2: Open Git Bash
 
-Download Git Bash from:
-
-https://git-scm.com
-
-Install with default settings.
-
-Verify installation:
-
-```bash
-git --version
-```
-
----
-
-# Step 7: Open Git Bash
-
-Move the PEM file to a folder.
-
-Example:
-
-```text
-Desktop/AWS-JOVAC
-```
+Navigate to the folder containing the PEM file.
 
 Right Click →
 
@@ -233,36 +371,24 @@ Right Click →
 Git Bash Here
 ```
 
+:contentReference[oaicite:17]{index=17}
+
 ---
 
-# Step 8: Set PEM File Permissions
-
-Run:
+## Step 3: Set File Permissions
 
 ```bash
 chmod 400 linux-key.pem
 ```
 
-Purpose:
-
-- Protect private key
-- Restrict unauthorized access
-- Required by SSH
-
 ---
 
-# Step 9: Connect to Linux EC2 Instance
+## Step 4: Connect Using SSH
 
 ### Amazon Linux
 
 ```bash
 ssh -i linux-key.pem ec2-user@PUBLIC-IP
-```
-
-Example:
-
-```bash
-ssh -i linux-key.pem ec2-user@65.2.xxx.xxx
 ```
 
 ### Ubuntu
@@ -271,36 +397,29 @@ ssh -i linux-key.pem ec2-user@65.2.xxx.xxx
 ssh -i linux-key.pem ubuntu@PUBLIC-IP
 ```
 
-Example:
-
-```bash
-ssh -i linux-key.pem ubuntu@65.2.xxx.xxx
-```
-
 ---
 
-# Successful Login
+## Step 5: Successful Login
 
-If connection succeeds:
+After authentication:
 
 ```text
-Last login: ...
-[ec2-user@ip-172-31-x-x ~]$
+[ec2-user@ip-xxx-xxx-xxx-xxx ~]$
 ```
 
-You are now connected to the Linux server.
+Linux instance accessed successfully. :contentReference[oaicite:18]{index=18}
 
 ---
 
-# Basic Linux Commands
+# 🧪 Basic Linux Commands
 
-### Current User
+### Check Current User
 
 ```bash
 whoami
 ```
 
-### Current Directory
+### Print Working Directory
 
 ```bash
 pwd
@@ -312,16 +431,10 @@ pwd
 ls
 ```
 
-### Create Directory
+### Create Folder
 
 ```bash
 mkdir demo
-```
-
-### Enter Directory
-
-```bash
-cd demo
 ```
 
 ### Create File
@@ -330,19 +443,7 @@ cd demo
 touch test.txt
 ```
 
-### View Files
-
-```bash
-ls -l
-```
-
-### Display Date
-
-```bash
-date
-```
-
-### System Information
+### View System Information
 
 ```bash
 uname -a
@@ -350,7 +451,43 @@ uname -a
 
 ---
 
-# Common Errors and Solutions
+# 🔒 Security Concepts Learned
+
+## Security Groups
+
+Acts as a virtual firewall controlling network traffic.
+
+### Windows
+
+```text
+Port 3389 (RDP)
+```
+
+### Linux
+
+```text
+Port 22 (SSH)
+```
+
+---
+
+## Key Pair Authentication
+
+AWS generates:
+
+### Public Key
+
+Stored in AWS.
+
+### Private Key
+
+Downloaded to local machine.
+
+Used for secure authentication during connection. :contentReference[oaicite:19]{index=19}
+
+---
+
+# ⚠️ Common Errors
 
 ## Permission Denied
 
@@ -358,145 +495,85 @@ uname -a
 Permission denied (publickey)
 ```
 
-### Solution
+### Fix
 
-- Use correct username.
-- Use correct PEM file.
-- Check file permissions.
-
-Amazon Linux:
+Use correct username:
 
 ```bash
 ec2-user
 ```
 
-Ubuntu:
+or
 
 ```bash
 ubuntu
 ```
 
+Verify correct PEM file.
+
 ---
 
 ## Connection Timed Out
 
-```bash
-Connection timed out
-```
+Check:
 
-### Solution
-
-- Verify Security Group.
-- Ensure Port 22 is open.
-- Check Public IP.
+- Public IP
+- Security Group
+- Port 22 Open
 
 ---
 
-## Host Key Verification Failed
+# 🗑️ Instance Termination
 
-```bash
-Host key verification failed
-```
-
-### Solution
-
-Remove old key:
-
-```bash
-ssh-keygen -R PUBLIC-IP
-```
-
----
-
-# Security Best Practices
-
-- Never share PEM files.
-- Restrict SSH access to your IP.
-- Terminate unused instances.
-- Use strong IAM policies.
-- Enable MFA on AWS account.
-
----
-
-# Instance Termination
-
-After completing the task:
-
-### Select Instance
-
-EC2 Dashboard → Instances
-
-### Click
+After completing the tasks:
 
 ```text
+EC2 Dashboard
+      ↓
+Select Instance
+      ↓
 Instance State
-```
-
-### Select
-
-```text
+      ↓
 Terminate Instance
 ```
 
-### Confirm
-
-```text
-Terminate
-```
-
-Instance State:
-
-```text
-Terminated
-```
+Both Windows and Linux instances should be terminated after use to avoid unnecessary charges. :contentReference[oaicite:20]{index=20} :contentReference[oaicite:21]{index=21}
 
 ---
 
-# Skills Learned
+# 📚 Learning Outcomes
 
-- Cloud Computing Basics
-- AWS EC2 Management
-- Linux Administration
-- SSH Authentication
-- Security Group Configuration
-- Remote Server Access
-- Cloud Resource Management
+By completing this project, the following concepts were learned:
+
+- Cloud Computing Fundamentals
+- AWS Account Management
+- AWS Regions and Availability Zones
+- Amazon EC2 Service
+- Windows Server Deployment
+- Linux Server Deployment
+- Security Groups Configuration
+- Key Pair Authentication
+- SSH Connectivity
+- Remote Desktop Connectivity
+- Cloud Resource Lifecycle Management
 
 ---
 
-# Technologies Used
+# 🛠️ Technologies Used
 
 | Technology | Purpose |
 |------------|---------|
 | AWS EC2 | Virtual Machine Hosting |
-| Linux | Operating System |
-| Git Bash | SSH Client |
-| SSH | Secure Remote Access |
+| Windows Server 2019 | Windows Environment |
+| Amazon Linux / Ubuntu | Linux Environment |
+| Git Bash | SSH Access |
+| Remote Desktop | Windows Access |
 | Security Groups | Firewall Rules |
+| SSH | Secure Linux Connection |
+| RDP | Secure Windows Connection |
 
 ---
 
-# Learning Outcome
+# 📌 Conclusion
 
-By completing this project, users gain hands-on experience with AWS EC2 services, Linux server deployment, SSH-based remote access, cloud security configuration, and cloud resource lifecycle management. This project provides a strong foundation for cloud computing, DevOps, and system administration concepts.
-
----
-
-## Author
-
-**AWS JOVAC Training Program**
-
-### Task
-Lecture 1 – Create and Access a Linux Machine in EC2
-
-### Platform
-
-Amazon Web Services (AWS)
-
-### Service Used
-
-Amazon Elastic Compute Cloud (EC2)
-
-### Status
-
-✅ Completed Successfully
+This project provided hands-on experience with Amazon EC2 by creating, configuring, accessing, and managing both Windows and Linux virtual machines. It demonstrated secure authentication using key pairs, remote administration using RDP and SSH, security group configuration, and proper cloud resource management practices.
