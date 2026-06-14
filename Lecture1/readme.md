@@ -1,4 +1,5 @@
-# AWS EC2 Windows Server Setup
+#(Lecture - 1)
+# AWS EC2 Windows Server Setup 
 
 ## 📌 Overview
 This project documents the process of creating and accessing a Windows Server instance on Amazon Web Services (AWS) using EC2 (Elastic Compute Cloud).
