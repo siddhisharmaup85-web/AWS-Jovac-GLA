@@ -354,7 +354,7 @@ Git Bash was used in this project. :contentReference[oaicite:15]{index=15}
 Example:
 
 ```text
-linux-key.pem
+Windows-Machine-Demo.pem
 ```
 
 :contentReference[oaicite:16]{index=16}
@@ -378,7 +378,7 @@ Git Bash Here
 ## Step 3: Set File Permissions
 
 ```bash
-chmod 400 linux-key.pem
+chmod 400 Windows-Machine-Demo.pem
 ```
 
 ---
@@ -388,13 +388,13 @@ chmod 400 linux-key.pem
 ### Amazon Linux
 
 ```bash
-ssh -i linux-key.pem ec2-user@PUBLIC-IP
+ssh -i Windows-Machine-Demo.pem ec2-user@PUBLIC-IP
 ```
 
 ### Ubuntu
 
 ```bash
-ssh -i linux-key.pem ubuntu@PUBLIC-IP
+ssh -i Windows-Machine-Demo.pem ubuntu@PUBLIC-IP
 ```
 
 ---
