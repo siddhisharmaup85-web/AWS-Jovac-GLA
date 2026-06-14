@@ -1,4 +1,4 @@
-#(Lecture - 1)
+# (Lecture - 1)
 # AWS EC2 Windows Server Setup 
 
 ## 📌 Overview
